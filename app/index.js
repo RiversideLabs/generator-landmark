@@ -175,12 +175,12 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 
 			if (this.includeEmail && !this.mandrillAPI) {
 				this.usingTestMandrillAPI = true;
-				this.mandrillAPI = 'NY8RRKyv1Bure9bdP8-TOQ';
+				this.mandrillAPI = 'LBlknR415P8IWu5PXtYUgA';
 			}
 
 			if (!this.cloudinaryURL && (this.includeBlog || this.includeGallery)) {
 				this.usingDemoCloudinaryAccount = true;
-				this.cloudinaryURL = 'cloudinary://333779167276662:_8jbSi9FB3sWYrfimcl8VKh34rI@landmark-demo';
+				this.cloudinaryURL = 'cloudinary://369997115318114:Dzg45DYk8j5fDgvtHkPoyHZYN50@landmark-demo';
 			}
 
 			cb();
