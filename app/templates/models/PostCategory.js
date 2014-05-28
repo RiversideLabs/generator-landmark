@@ -1,4 +1,4 @@
-var landmark = require('landmark'),
+var landmark = require('landmark-serve'),
 	Types = landmark.Field.Types;
 
 /**

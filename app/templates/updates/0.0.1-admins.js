@@ -16,7 +16,7 @@ exports.create = {
  * can be structured.
  */
 /*
-var landmark = require('landmark'),
+var landmark = require('landmark-serve'),
 	async = require('async'),
 	User = landmark.list('User');
 

@@ -11,7 +11,7 @@
  * can be previewed at /landmark/test-email/{key}
  */
 
-<% } %>var landmark = require('landmark');
+<% } %>var landmark = require('landmark-serve');
 
 module.exports = {
 	<% if (includeEnquiries) { %>

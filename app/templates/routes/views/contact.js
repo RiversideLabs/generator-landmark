@@ -1,4 +1,4 @@
-var landmark = require('landmark'),
+var landmark = require('landmark-serve'),
 	Enquiry = landmark.list('Enquiry');
 
 exports = module.exports = function(req, res) {

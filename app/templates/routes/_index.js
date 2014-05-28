@@ -19,7 +19,7 @@
  */
 
 <% } %>var _ = require('underscore'),
-	landmark = require('landmark'),
+	landmark = require('landmark-serve'),
 	middleware = require('./middleware'),
 	importRoutes = landmark.importer(__dirname);
 

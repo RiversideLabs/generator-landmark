@@ -1,4 +1,4 @@
-var landmark = require('landmark'),
+var landmark = require('landmark-serve'),
 	async = require('async');
 
 exports = module.exports = function(req, res) {

@@ -10,7 +10,7 @@
 
 <% } %>var _ = require('underscore'),
 	querystring = require('querystring'),
-	landmark = require('landmark');
+	landmark = require('landmark-serve');
 
 
 /**
