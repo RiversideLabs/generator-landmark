@@ -181,6 +181,27 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 				'\n    Please enter your Google API Key:'
 		});
 
+		prompts.config.push({
+			name: 's3Key',
+			message: '------------------------------------------------' +
+				'\n    LandmarkJS integrates with the Amazon S3 for uploading location tours.' +
+				'\n    See http://landmarkjs.com/docs/configuration/#services-amazons3 for more information.' +
+				'\n    ' +
+				'\n    If you skip this, you will recieve an error in starting the app.' +
+				'\n    ' +
+				'\n    Please enter your S3 Key:'
+		});
+
+		prompts.config.push({
+			name: 's3Secret',
+			message: 'Please enter your S3 Secret:'
+		});
+
+		prompts.config.push({
+			name: 's3Bucket',
+			message: 'Please enter your S3 Bucket:'
+		});
+
 		if (!prompts.config.length) {
 			return cb();
 		}
@@ -206,6 +227,17 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 				this.googleBrowserKey = 'AIzaSyD9J9BAXpQrEZCNmfBavAFzPmkOIM1cZaM';
 			}
 
+			if (!this.s3Key) {
+				this.s3Key = '';
+			}
+
+			if (!this.s3Secret) {
+				this.s3Secret = '';
+			}
+
+			if (!this.s3Bucket) {
+				this.s3Bucket = '';
+			}
 
 			cb();
 
