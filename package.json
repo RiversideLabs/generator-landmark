@@ -1,14 +1,11 @@
 {
 	"name": "generator-landmark",
-	"version": "0.1.17",
+	"version": "0.1.18",
 	"description": "A LandmarkJS Project Generator for Yeoman",
 	"keywords": [
 		"yeoman-generator",
 		"landmarkjs",
-		"landmark",
-		"express",
-		"cms",
-		"mongoose"
+		"landmark"
 	],
 	"homepage": "https://github.com/RiversideLabs/generator-landmark",
 	"bugs": "https://github.com/RiversideLabs/generator-landmark/issues",
