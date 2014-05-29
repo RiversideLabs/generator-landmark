@@ -362,6 +362,9 @@ LandmarkGenerator.prototype.routes = function routes() {
 		this.copy('routes/views/contact.js');
 	}
 
+	// API
+	this.mkdir('routes/api');
+	this.copy('routes/api/locations.js');
 };
 
 LandmarkGenerator.prototype.templates = function templates() {
