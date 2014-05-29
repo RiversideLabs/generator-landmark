@@ -10,26 +10,26 @@ var landmark = require('landmark-serve');
 // and documentation.
 <% } %>
 landmark.init({
-	
+
 	'name': '<%= projectName %>',
 	'brand': '<%= projectName %>',
-	
+
 	'less': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
-	
+
 	'views': 'templates/views',
 	'view engine': 'jade',
 	<% if (includeEmail) { %>
 	'emails': 'templates/emails',
 	<% } %>
 	'auto update': true,
-	
+
 	'session': true,
 	'auth': true,
 	'user model': 'User',
 	'cookie secret': '<%= cookieSecret %>'
-	
+
 });
 <% if (includeGuideComments) { %>
 // Load your project's Models
@@ -90,6 +90,7 @@ landmark.set('email tests', require('./routes/emails'));
 // Configure the navigation bar in Landmark's Admin UI
 <% } %>
 landmark.set('nav', {
+	'locations': 'locations',
 	<% if (includeBlog) { %>'posts': ['posts', 'post-categories'],
 	<% } if (includeGallery) { %>'galleries': 'galleries',
 	<% } if (includeEnquiries) { %>'enquiries': 'enquiries',

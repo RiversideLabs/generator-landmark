@@ -41,6 +41,13 @@ var LandmarkGenerator = module.exports = function LandmarkGenerator(args, option
 				'\nbefore sending your site live.'
 				: '') +
 
+			((this.usingDemoGoogleAccount) ?
+				'\n' +
+				'\nWe\'ve included a demo Google API Account, which is reset daily.' +
+				'\nPlease configure your own account or use the LocalImage field instead' +
+				'\nbefore sending your site live.'
+				: '') +
+
 			'\n\nTo start your new website, run "node landmark".' +
 			'\n');
 
@@ -146,22 +153,33 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 					blog_gallery = 'blog template';
 				}
 
-				prompts.config.push({
-					name: 'cloudinaryURL',
-					message: '------------------------------------------------' +
-						'\n    LandmarkJS integrates with Cloudinary for image upload, resizing and' +
-						'\n    hosting. See http://landmarkjs.com/guide/config/#cloudinary for more info.' +
-						'\n    ' +
-						'\n    CloudinaryImage fields are used by the ' + blog_gallery + '.' +
-						'\n    ' +
-						'\n    You can skip this for now (we\'ll include demo account details)' +
-						'\n    ' +
-						'\n    Please enter your Cloudinary URL:'
-				});
-
 			}
 
 		}
+
+		prompts.config.push({
+			name: 'cloudinaryURL',
+			message: '------------------------------------------------' +
+				'\n    LandmarkJS integrates with Cloudinary for image upload, resizing and' +
+				'\n    hosting. See http://landmarkjs.com/guide/config/#cloudinary for more info.' +
+				'\n    ' +
+				'\n    CloudinaryImage fields are used for all uploads by default.' +
+				'\n    ' +
+				'\n    You can skip this for now (we\'ll include demo account details)' +
+				'\n    ' +
+				'\n    Please enter your Cloudinary URL:'
+		});
+
+		prompts.config.push({
+			name: 'googleAPI',
+			message: '------------------------------------------------' +
+				'\n    LandmarkJS integrates with the Google API to provide Geocoding.' +
+				'\n    services. See https://developers.google.com/maps/documentation/geocoding/ for more info.' +
+				'\n    ' +
+				'\n    You can skip this for now (we\'ll include demo account details)' +
+				'\n    ' +
+				'\n    Please enter your Google API Key:'
+		});
 
 		if (!prompts.config.length) {
 			return cb();
@@ -178,10 +196,16 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 				this.mandrillAPI = 'LBlknR415P8IWu5PXtYUgA';
 			}
 
-			if (!this.cloudinaryURL && (this.includeBlog || this.includeGallery)) {
+			if (!this.cloudinaryURL) {
 				this.usingDemoCloudinaryAccount = true;
 				this.cloudinaryURL = 'cloudinary://369997115318114:Dzg45DYk8j5fDgvtHkPoyHZYN50@landmark-demo';
 			}
+
+			if (!this.googleBrowserKey) {
+				this.usingDemoGoogleAccount = true;
+				this.googleBrowserKey = 'AIzaSyD9J9BAXpQrEZCNmfBavAFzPmkOIM1cZaM';
+			}
+
 
 			cb();
 
@@ -246,7 +270,7 @@ LandmarkGenerator.prototype.project = function project() {
 
 LandmarkGenerator.prototype.models = function models() {
 
-	var modelFiles = ['User'],
+	var modelFiles = ['User', 'Location'],
 		modelIndex = '';
 
 	if (this.includeBlog) {
@@ -290,6 +314,9 @@ LandmarkGenerator.prototype.routes = function routes() {
 
 	this.copy('routes/views/index.js');
 
+	this.copy('routes/views/landmarks.js');
+	this.copy('routes/views/location.js');
+
 	if (this.includeBlog) {
 		this.copy('routes/views/blog.js');
 		this.copy('routes/views/post.js');
@@ -315,6 +342,9 @@ LandmarkGenerator.prototype.templates = function templates() {
 	this.directory('templates/views/errors');
 
 	this.copy('templates/views/index.jade');
+
+	this.copy('templates/views/landmarks.jade');
+	this.copy('templates/views/location.jade');
 
 	if (this.includeBlog) {
 		this.copy('templates/views/blog.jade');

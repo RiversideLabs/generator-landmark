@@ -1,0 +1,47 @@
+extends ../layouts/default
+
+block content
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+		article
+			p: a(href='/landmarks') &larr; back to landmarks listing
+			hr
+			if !data.location
+				h2 Invalid Location.
+			else
+				header
+					h1= data.location.commonName
+					h2= data.location.historicName
+					h5 Added
+						if data.location.publishedDate
+							| on #{data.location._.publishedDate.format('MMMM Do, YYYY')}
+				.location
+					if data.location.heroImage.exists
+						.image-wrap: img(src=data.location._.heroImage.fit(750,450)).img-responsive
+					!= data.location.description.full
+					hr
+					dl.dl-horizontal
+						dt Location
+						dd= data.location.location.formattedAddress
+						dt Plaque Text
+						dd= data.location.plaqueText
+						if data.location.yearBuilt
+							dt Year Built
+							dd= data.location.yearBuilt
+						if data.location.architect
+							dt Architect
+							dd= data.location.architect
+						if data.location.builder
+							dt Builder
+							dd= data.location.builder
+						if data.location.architecturalStyle
+							dt Architectural Style
+							dd= data.location.architecturalStyle
+						if data.location.url
+							dt URL
+							dd
+								a(href=data.location.url, target='_blank')= data.location.url
+						dt Images
+						dd
+							.row.gallery-images
+								each image in data.location.images
+									.col-xs-6.col-sm-4.col-md-3.gallery-image: img(src=image.limit(300,300)).img-rounded
