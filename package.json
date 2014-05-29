@@ -1,6 +1,6 @@
 {
 	"name": "generator-landmark",
-	"version": "0.1.16",
+	"version": "0.1.17",
 	"description": "A LandmarkJS Project Generator for Yeoman",
 	"keywords": [
 		"yeoman-generator",
