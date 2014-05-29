@@ -29,6 +29,7 @@ landmark.pre('render', middleware.flashMessages);
 
 // Import Route Controllers
 var routes = {
+  api: importRoutes('./api'),
 	views: importRoutes('./views')
 };
 
