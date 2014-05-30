@@ -10,20 +10,26 @@ block content
 			else
 				header
 					h1= data.location.commonName
-					h2= data.location.historicName
-					h5 Added
+					h4
+						| Historic Name: 
+						em #{data.location.historicName}
+					h5 Added 
 						if data.location.publishedDate
 							| on #{data.location._.publishedDate.format('MMMM Do, YYYY')}
 				.location
 					if data.location.heroImage.exists
-						.image-wrap: img(src=data.location._.heroImage.fit(750,450)).img-responsive
-					!= data.location.description.full
+						.image-wrap(style='margin-bottom:20px'): img(src=data.location._.heroImage.fill(750,450)).img-responsive
+					if data.location.description.full
+						!= data.location.description.full
+					if data.location.plaqueText
+						hr
+						h4 Plaque Text
+						!= data.location.plaqueText
 					hr
 					dl.dl-horizontal
-						dt Location
-						dd= data.location.location.formattedAddress
-						dt Plaque Text
-						dd= data.location.plaqueText
+						if (data.location.location.street1 || data.location.location.suburb || data.location.location.state || data.location.location.postcode)
+							dt Location
+							dd= data.location.location.formattedAddress
 						if data.location.yearBuilt
 							dt Year Built
 							dd= data.location.yearBuilt
@@ -40,8 +46,19 @@ block content
 							dt URL
 							dd
 								a(href=data.location.url, target='_blank')= data.location.url
-						dt Images
-						dd
-							.row.gallery-images
-								each image in data.location.images
-									.col-xs-6.col-sm-4.col-md-3.gallery-image: img(src=image.limit(300,300)).img-rounded
+					hr
+					.gallery-images
+						h4 Images
+						.row
+							each image, i in data.location.images
+								.col-xs-6.col-sm-4.col-md-3.gallery-image(id=i)
+									a(href='#', data-toggle='modal', data-target='.pop-up-#{i}')
+										img(src=image.thumbnail(300,300)).img-rounded.img-thumbnail
+									.modal.fade(class='pop-up-#{i}', tabindex='-1', role='dialog', aria-labelledby='myLargeModalLabel-#{i}', aria-hidden='true')
+										.modal-dialog.modal-lg
+											.modal-content
+												.modal-header
+													button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+													h4.modal-title(id='myLargeModalLabel-#{i}') Image Preview
+												.modal-body
+													img.img-responsive.img-rounded.center-block(src=image.fit(750,450))
