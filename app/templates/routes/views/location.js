@@ -7,7 +7,7 @@ exports = module.exports = function(req, res) {
 		locals = res.locals;
 
 	// Set locals
-	locals.section = 'landmarks';
+	locals.section = 'locations';
 	locals.filters = {
 		location: req.params.location
 	};

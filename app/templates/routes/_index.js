@@ -38,8 +38,8 @@ exports = module.exports = function(app) {
 
 	// Views
 	app.get('/', routes.views.index);
-  app.get('/landmarks', routes.views.landmarks);
-  app.get('/landmarks/location/:location', routes.views.location);
+  app.get('/locations', routes.views.locations);
+  app.get('/locations/location/:location', routes.views.location);
 	<% if (includeBlog) { %>app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
 	<% } %><% if (includeGallery) { %>app.get('/gallery', routes.views.gallery);

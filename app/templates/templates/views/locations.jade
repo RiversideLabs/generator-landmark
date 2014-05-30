@@ -2,7 +2,7 @@ extends ../layouts/default
 
 mixin location(location)
 	.location.clearfix(data-ks-editable=editable(user, { list: 'Location', id: location.id }))
-		h2: a(href='/landmarks/location/' + location.slug)= location.commonName
+		h2: a(href='/locations/location/' + location.slug)= location.commonName
 		p.lead.text-muted Added 
 			if location.publishedDate
 				| on #{location._.publishedDate.format('MMMM Do, YYYY')}
@@ -12,12 +12,12 @@ mixin location(location)
 			if location.description.brief
 				p!= location.description.brief
 			if location.description.extended
-				p.read-more: a(href='/landmarks/location/' + location.slug) Read more...
+				p.read-more: a(href='/locations/location/' + location.slug) Read more...
 		hr(style='margin-top:20px')
 
 block intro
 	.container
-		h1= 'Landmarks'
+		h1= 'Locations'
 
 block content
 	.container: .row
@@ -33,7 +33,7 @@ block content
 						|  locations.
 				else
 					h4.text-weight-normal Showing #{utils.plural(data.locations.results.length, '* location')}.
-				.landmarks
+				.locations
 					each location in data.locations.results
 						+location(location)
 

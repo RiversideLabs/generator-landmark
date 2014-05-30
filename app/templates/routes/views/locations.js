@@ -7,7 +7,7 @@ exports = module.exports = function(req, res) {
 		locals = res.locals;
 
 	// Init locals
-	locals.section = 'landmarks';
+	locals.section = 'locations';
 	locals.filters = {
 		category: req.params.category
 	};
@@ -34,6 +34,6 @@ exports = module.exports = function(req, res) {
 	});
 
 	// Render the view
-	view.render('landmarks');
+	view.render('locations');
 
 };

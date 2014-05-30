@@ -346,7 +346,7 @@ LandmarkGenerator.prototype.routes = function routes() {
 
 	this.copy('routes/views/index.js');
 
-	this.copy('routes/views/landmarks.js');
+	this.copy('routes/views/locations.js');
 	this.copy('routes/views/location.js');
 
 	if (this.includeBlog) {
@@ -378,7 +378,7 @@ LandmarkGenerator.prototype.templates = function templates() {
 
 	this.copy('templates/views/index.jade');
 
-	this.copy('templates/views/landmarks.jade');
+	this.copy('templates/views/locations.jade');
 	this.copy('templates/views/location.jade');
 
 	if (this.includeBlog) {
