@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Locations</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-md-9">
+      <h4 class="text-weight-normal">Showing {{ data.locations.results.length}} locations.</h4>
+      <div class="blog">
+        {{# each data.locations.results}}
+        <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
+            <h2><a href="{{locationUrl slug}}">{{{commonName}}}</a></h2>
+            <p>{{{description.brief}}}</p>
+            <p class="read-more"><a href="{{locationUrl slug}}">Read more...</a></p>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
