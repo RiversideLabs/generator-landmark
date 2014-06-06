@@ -408,6 +408,7 @@ LandmarkGenerator.prototype.templates = function templates() {
 			this.copy('templates/default-hbs/views/contact.hbs', 'templates/views/contact.hbs');
 			if (this.includeEmail) {
 				this.copy('templates/default-hbs/emails/enquiry-notification.hbs', 'templates/emails/enquiry-notification.hbs');
+			}
 		}
 	}
 	if(this.isViewEngineJade){
