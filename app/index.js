@@ -315,7 +315,7 @@ LandmarkGenerator.prototype.project = function project() {
 
 LandmarkGenerator.prototype.models = function models() {
 
-	var modelFiles = ['User', 'Location'],
+	var modelFiles = ['User', 'Location', 'Tour'],
 		modelIndex = '';
 
 	if (this.includeBlog) {
@@ -362,6 +362,9 @@ LandmarkGenerator.prototype.routes = function routes() {
 	this.copy('routes/views/locations.js');
 	this.copy('routes/views/location.js');
 
+	this.copy('routes/views/tours.js');
+	this.copy('routes/views/tour.js');
+
 	if (this.includeBlog) {
 		this.copy('routes/views/blog.js');
 		this.copy('routes/views/post.js');
@@ -378,6 +381,7 @@ LandmarkGenerator.prototype.routes = function routes() {
 	// API
 	this.mkdir('routes/api');
 	this.copy('routes/api/locations.js');
+	this.copy('routes/api/tours.js');
 };
 
 LandmarkGenerator.prototype.templates = function templates() {
@@ -394,6 +398,9 @@ LandmarkGenerator.prototype.templates = function templates() {
 		
 		this.copy('templates/default-hbs/views/locations.hbs', 'templates/views/locations.hbs');
 		this.copy('templates/default-hbs/views/location.hbs', 'templates/views/location.hbs');
+		
+		this.copy('templates/default-hbs/views/tours.hbs', 'templates/views/tours.hbs');
+		this.copy('templates/default-hbs/views/tour.hbs', 'templates/views/tour.hbs');
 
 		if (this.includeBlog) {
 			this.copy('templates/default-hbs/views/blog.hbs', 'templates/views/blog.hbs');
@@ -423,6 +430,9 @@ LandmarkGenerator.prototype.templates = function templates() {
 		
 		this.copy('templates/default-jade/views/locations.jade', 'templates/views/locations.jade');
 		this.copy('templates/default-jade/views/location.jade', 'templates/views/location.jade');
+		
+		this.copy('templates/default-jade/views/tours.jade', 'templates/views/tours.jade');
+		this.copy('templates/default-jade/views/tour.jade', 'templates/views/tour.jade');
 		
 		if (this.includeBlog) {
 			this.copy('templates/default-jade/views/blog.jade', 'templates/views/blog.jade');

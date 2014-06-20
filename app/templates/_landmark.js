@@ -109,6 +109,7 @@ landmark.set('email tests', require('./routes/emails'));
 <% } %>
 landmark.set('nav', {
 	'locations': 'locations',
+	'tours': 'tours',
 	<% if (includeBlog) { %>'posts': ['posts', 'post-categories'],
 	<% } if (includeGallery) { %>'galleries': 'galleries',
 	<% } if (includeEnquiries) { %>'enquiries': 'enquiries',
