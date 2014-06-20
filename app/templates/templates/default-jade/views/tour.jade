@@ -9,7 +9,7 @@ block content
 				h2 Invalid Tour.
 			else
 				header
-					h1= data.tour.tour
+					h1= data.tour.title
 					h5 Added 
 						if data.tour.publishedDate
 							| on #{data.tour._.publishedDate.format('MMMM Do, YYYY')}
