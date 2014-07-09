@@ -95,7 +95,7 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 				default: 'user@landmarkjs.com'
 			}, {
 				name: 'adminPassword',
-				message: 'What\'s this user\'s password?',
+				message: 'What\'s their password?',
 				default: 'admin'
 			}, {
 				type: 'confirm',
