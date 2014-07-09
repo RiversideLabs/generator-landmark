@@ -90,6 +90,14 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 				message: 'Select a View Engine? '+(('[hbs || jade]').yellow),
 				default: 'jade'
 			}, {
+				name: 'adminLogin',
+				message: 'What\'s the login of first administrator?',
+				default: 'user@landmarkjs.com'
+			}, {
+				name: 'adminPassword',
+				message: 'What\'s this user\'s password?',
+				default: 'admin'
+			}, {
 				type: 'confirm',
 				name: 'includeBlog',
 				message: 'Would you like to include a Blog?',
@@ -131,6 +139,8 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 
 		// Keep an unescaped version of the project name
 		this._projectName = this.projectName;
+		this.adminLogin = utils.escapeString(this.adminLogin);
+		this.adminPassword = utils.escapeString(this.adminPassword);
 		// ... then escape it for use in strings (most cases)
 		this.projectName = utils.escapeString(this.projectName);
 		if (this.selectViewEngine === 'hbs' || this.selectViewEngine === ''){

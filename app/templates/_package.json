@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "landmark-serve": "~0.1.21",
+    "landmark-serve": "~0.1.23",
     "async": "~0.9.0",
     "underscore": "~1.6.0",
     <% if (isViewEngineHbs) { %>
