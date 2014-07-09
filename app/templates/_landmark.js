@@ -41,7 +41,7 @@ landmark.init({
 	'auto update': true,
 	'session': true,
 	'auth': true,
-	'user model': 'User',
+	'user model': '<%= userModel %>',
 	'cookie secret': '<%= cookieSecret %>'
 });
 <% if (includeGuideComments) { %>
@@ -108,7 +108,7 @@ landmark.set('nav', {
 	<% if (includeBlog) { %>'posts': ['posts', 'post-categories'],
 	<% } if (includeGallery) { %>'galleries': 'galleries',
 	<% } if (includeEnquiries) { %>'enquiries': 'enquiries',
-	<% } %>'users': 'users'
+	<% } %>'<%= userModelPath %>': '<%= userModelPath %>'
 });
 <% if (includeGuideComments) { %>
 // Start Landmark to connect to your database and initialise the web server

@@ -98,6 +98,10 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 				message: 'What\'s their password?',
 				default: 'admin'
 			}, {
+				name: 'userModel',
+				message: 'What is the name of user model?',
+				default: 'User'
+			}, {
 				type: 'confirm',
 				name: 'includeBlog',
 				message: 'Would you like to include a Blog?',
@@ -141,6 +145,7 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 		this._projectName = this.projectName;
 		this.adminLogin = utils.escapeString(this.adminLogin);
 		this.adminPassword = utils.escapeString(this.adminPassword);
+		this.userModelPath = utils.keyToPath(this.userModel, true);
 		// ... then escape it for use in strings (most cases)
 		this.projectName = utils.escapeString(this.projectName);
 		if (this.selectViewEngine === 'hbs' || this.selectViewEngine === ''){
@@ -325,7 +330,7 @@ LandmarkGenerator.prototype.project = function project() {
 
 LandmarkGenerator.prototype.models = function models() {
 
-	var modelFiles = ['User', 'Location', 'Tour'],
+	var modelFiles = ['Location', 'Tour'],
 		modelIndex = '';
 
 	if (this.includeBlog) {
@@ -342,6 +347,8 @@ LandmarkGenerator.prototype.models = function models() {
 	}
 
 	this.mkdir('models');
+	
+	this.template('models/_user.js', 'models/'+this.userModel+'.js');
 
 	modelFiles.forEach(function(i) {
 		this.template('models/' + i + '.js');

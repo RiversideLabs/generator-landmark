@@ -39,7 +39,7 @@ Enquiry.schema.methods.sendNotificationEmail = function(callback) {
 	
 	var enqiury = this;
 	
-	landmark.list('User').model.find().where('isAdmin', true).exec(function(err, admins) {
+	landmark.list('<%= userModel %>').model.find().where('isAdmin', true).exec(function(err, admins) {
 		
 		if (err) return callback(err);
 		
