@@ -103,7 +103,7 @@ landmark.set('email tests', require('./routes/emails'));
 // Configure the navigation bar in Landmark's Admin UI
 <% } %>
 landmark.set('nav', {
-	'locations': 'locations',
+	'locations': ['locations', 'architectural-styles'],
 	'tours': 'tours',
 	<% if (includeBlog) { %>'posts': ['posts', 'post-categories'],
 	<% } if (includeGallery) { %>'galleries': 'galleries',
