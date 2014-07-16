@@ -4,13 +4,14 @@ require('dotenv').load();
 
 // Require landmark
 var landmark = require('landmark-serve')<% if (viewEngine == 'hbs') { %>,
-	handlebars = require('express3-handlebars')<% } %>;
+	handlebars = require('express3-handlebars')<% } else if (viewEngine == 'swig') { %>,
+	swig = require('swig')
+	<% } %>;
 <% if (includeGuideComments) { %>
 // Initialise Landmark with your project's configuration.
 // See http://landmarkjs.com/guide/config for available options
 // and documentation.
 <% } %>
-
 landmark.init({
 
 	'name': '<%= projectName %>',
@@ -38,6 +39,7 @@ landmark.init({
 	'auth': true,
 	'user model': '<%= userModel %>',
 	'cookie secret': '<%= cookieSecret %>'
+
 });
 <% if (includeGuideComments) { %>
 // Load your project's Models

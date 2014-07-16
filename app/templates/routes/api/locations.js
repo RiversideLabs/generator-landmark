@@ -1,5 +1,7 @@
 var async = require('async'),
-	landmark = require('landmark-serve');
+ landmark = require('landmark-serve'),
+		async = require('async'),
+				_ = require('underscore');
 
 var Location = landmark.list('Location'),
 				Tour = landmark.list('Tour');
@@ -18,7 +20,6 @@ exports.list = function(req, res) {
 		});
 
 	});
-	
 	
 }
 

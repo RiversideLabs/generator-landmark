@@ -89,7 +89,7 @@ module.exports = function(grunt) {
 					'public/styles/**/*.css',
 					'public/styles/**/*.less',
 					'templates/**/*.jade',
-					'node_modules/landmark/templates/**/*.jade'
+					'node_modules/landmark-serve/templates/**/*.jade'
 				],
 				options: {
 					livereload: true

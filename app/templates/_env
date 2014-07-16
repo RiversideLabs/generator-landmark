@@ -3,5 +3,4 @@
 <% } if (googleBrowserKey) { %>GOOGLE_BROWSER_KEY=<%= googleBrowserKey %>
 <% } if (s3Key) { %>S3_KEY=<%= s3Key %>
 <% } if (s3Secret) { %>S3_SECRET=<%= s3Secret %>
-<% } if (s3Bucket) { %>S3_BUCKET=<%= s3Bucket %>
-<% } %>
+<% } if (s3Bucket) { %>S3_BUCKET=<%= s3Bucket %><% } %>

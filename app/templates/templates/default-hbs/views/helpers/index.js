@@ -142,7 +142,7 @@ module.exports = function() {
 	 * ===========================
 	 */
 	
-	// block rendering for Landmark admin css
+	// block rendering for landmark admin css
 	_helpers.isAdminEditorCSS = function(user, options) {
 		var output = '';
 		if (typeof(user) !== 'undefined' && user.isAdmin) {
@@ -153,7 +153,7 @@ module.exports = function() {
 		return new hbs.SafeString(output);
 	};
 	
-	// block rendering for Landmark admin js
+	// block rendering for landmark admin js
 	_helpers.isAdminEditorJS = function(user, options) {
 		var output = '';
 		if (typeof(user) !== 'undefined' && user.isAdmin) {
