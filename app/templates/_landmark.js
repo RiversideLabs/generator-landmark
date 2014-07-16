@@ -3,11 +3,8 @@
 require('dotenv').load();
 
 // Require landmark
-var landmark = require('landmark-serve');
-<% if (isViewEngineHbs) { %>
-// Require our express-hbs module
-var expresshbs = require('express3-handlebars');
-<% } %>
+var landmark = require('landmark-serve')<% if (viewEngine == 'hbs') { %>,
+	handlebars = require('express3-handlebars')<% } %>;
 <% if (includeGuideComments) { %>
 // Initialise Landmark with your project's configuration.
 // See http://landmarkjs.com/guide/config for available options
@@ -22,20 +19,18 @@ landmark.init({
 	'less': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
-	<% if (isViewEngineHbs) { %>
 	'views': 'templates/views',
-	'view engine': '<%= selectViewEngine %>',
-	'custom engine': expresshbs.create({
-		layoutsDir:'templates/views/layouts',
-		partialsDir:'templates/views/partials',
-		defaultLayout:'default',
-		helpers:new require('./templates/views/helpers')(),
-		extname:'.<%= selectViewEngine %>'
+	'view engine': '<%= viewEngine %>',
+	<% if (viewEngine === 'hbs') { %>
+	'custom engine': handlebars.create({
+		layoutsDir: 'templates/views/layouts',
+		partialsDir: 'templates/views/partials',
+		defaultLayout: 'default',
+		helpers: new require('./templates/views/helpers')(),
+		extname: '.<%= viewEngine %>'
 	}).engine,
-	<% } %><% if (isViewEngineJade) { %>
-	'views': 'templates/views',
-	'view engine': 'jade',
-	<% } %><% if (includeEmail) { %>
+	<% } %>
+	<% if (includeEmail) { %>
 	'emails': 'templates/emails',
 	<% } %>
 	'auto update': true,

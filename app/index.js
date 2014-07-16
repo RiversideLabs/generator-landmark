@@ -11,13 +11,12 @@ var LandmarkGenerator = module.exports = function LandmarkGenerator(args, option
 	// Initialise default values
 	this.cloudinaryURL = false;
 	this.mandrillAPI = false;
-
-	this.messages = [];
+	this.googleAPI = false;
 
 	// Apply the Base Generator
 	yeoman.generators.Base.apply(this, arguments);
 
-	// Init Messages
+	// Welcome
 	console.log('\nWelcome to LandmarkJS.\n');
 
 	var done = _.bind(function done() {
@@ -86,21 +85,9 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 				message: 'What is the name of your project?',
 				default: 'My Site'
 			}, {
-				name: 'selectViewEngine',
-				message: 'Select a View Engine? '+(('[hbs || jade]').yellow),
+				name: 'viewEngine',
+				message: 'Would you like to use Jade or Handlebars for templates? ' + (('[jade | hbs]').grey),
 				default: 'jade'
-			}, {
-				name: 'adminLogin',
-				message: 'What\'s the login of first administrator?',
-				default: 'user@landmarkjs.com'
-			}, {
-				name: 'adminPassword',
-				message: 'What\'s their password?',
-				default: 'admin'
-			}, {
-				name: 'userModel',
-				message: 'What is the name of user model?',
-				default: 'User'
 			}, {
 				type: 'confirm',
 				name: 'includeBlog',
@@ -117,14 +104,25 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 				message: 'Would you like to include a Contact Form?',
 				default: true
 			}, {
-				name: 'selectTaskRunner',
-				message: 'Would you like to include gulp or grunt? '+(('[gulp || grunt]').yellow),
-				default: ''
+				name: 'userModel',
+				message: 'What would you like to call the User model?',
+				default: 'User'
+			}, {
+				name: 'adminLogin',
+				message: 'Enter an email address for the first Admin user:',
+				default: 'user@landmarkjs.com'
+			}, {
+				name: 'adminPassword',
+				message: 'Enter a password for the first Admin user:',
+				default: 'admin'
+			}, {
+				name: 'taskRunner',
+				message: 'Would you like to include gulp or grunt? ' + (('[gulp | grunt]').grey),
 			}, {
 				type: 'confirm',
 				name: 'includeEmail',
 				message: '------------------------------------------------' +
-					'\n    LandmarkJS integrates with Mandrill (from Mailchimp) for email sending.' +
+					'\n    KeystoneJS integrates with Mandrill (from Mailchimp) for email sending.' +
 					'\n    Mandrill accounts are free for up to 12k emails per month.' +
 					'\n    Would you like to include Email configuration in your project?',
 				default: true
@@ -143,20 +141,26 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 
 		// Keep an unescaped version of the project name
 		this._projectName = this.projectName;
-		this.adminLogin = utils.escapeString(this.adminLogin);
-		this.adminPassword = utils.escapeString(this.adminPassword);
-		this.userModelPath = utils.keyToPath(this.userModel, true);
 		// ... then escape it for use in strings (most cases)
 		this.projectName = utils.escapeString(this.projectName);
-		if (this.selectViewEngine === 'hbs' || this.selectViewEngine === ''){
-			this.isViewEngineHbs = true;
-			this.isViewEngineJade = false;
-		}
-		if (this.selectViewEngine === 'jade'){
-			this.isViewEngineJade = true;
-			this.isViewEngineHbs = false;
+		this.adminLogin = utils.escapeString(this.adminLogin);
+		this.adminPassword = utils.escapeString(this.adminPassword);
+		
+		// Clean the viewEngine selection
+		if (_.contains(['handlebars', 'hbs', 'h'], this.viewEngine.toLowerCase().trim())) {
+			this.viewEngine = 'hbs';
+		} else {
+			this.viewEngine = 'jade';
 		}
 
+		// Clean the userModel name
+		this.userModel = utils.camelcase(this.userModel, false);
+		this.userModelPath = utils.keyToPath(this.userModel, true);
+
+		// Clean the taskRunner selection
+		this.taskRunner = (this.taskRunner || '').toLowerCase().trim();
+
+		// Additional prompts may be required, based on selections
 		if (this.includeBlog || this.includeGallery || this.includeEmail) {
 
 			if (this.includeEmail) {
@@ -191,7 +195,7 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 				'\n    LandmarkJS integrates with Cloudinary for image upload, resizing and' +
 				'\n    hosting. See http://landmarkjs.com/guide/config/#cloudinary for more info.' +
 				'\n    ' +
-				'\n    CloudinaryImage fields are used for all uploads by default.' +
+				'\n    CloudinaryImage fields are used for all image uploads by default.' +
 				'\n    ' +
 				'\n    You can skip this for now (we\'ll include demo account details)' +
 				'\n    ' +
@@ -317,11 +321,11 @@ LandmarkGenerator.prototype.project = function project() {
 	this.copy('gitignore', '.gitignore');
 	this.copy('Procfile');
 
-	if(this.selectTaskRunner === 'grunt') {
+	if(this.taskRunner === 'grunt') {
 		this.copy('Gruntfile.js');
 	}
 
-	if(this.selectTaskRunner === 'gulp'){
+	if(this.taskRunner === 'gulp'){
 		this.copy('gulpfile.js');
 	}
 
@@ -403,7 +407,10 @@ LandmarkGenerator.prototype.routes = function routes() {
 
 LandmarkGenerator.prototype.templates = function templates() {
 
-	if(this.isViewEngineHbs){
+	if (this.viewEngine === 'hbs') {
+		
+		// Copy Handlebars Templates
+		
 		this.mkdir('templates');
 		this.mkdir('templates/views');
 
@@ -434,8 +441,10 @@ LandmarkGenerator.prototype.templates = function templates() {
 				this.copy('templates/default-hbs/emails/enquiry-notification.hbs', 'templates/emails/enquiry-notification.hbs');
 			}
 		}
-	}
-	if(this.isViewEngineJade){
+	} else {
+		
+		// Copy Jade Templates
+		
 		this.mkdir('templates');
 		this.mkdir('templates/views');
 		
@@ -455,15 +464,15 @@ LandmarkGenerator.prototype.templates = function templates() {
 			this.copy('templates/default-jade/views/blog.jade', 'templates/views/blog.jade');
 			this.copy('templates/default-jade/views/post.jade', 'templates/views/post.jade');
 		}
-		
+
 		if (this.includeGallery) {
-			this.copy('templates/default-jade/views/gallery.jade', 'templates/views/gallery.jade');
+			this.copy('templates/default-' + this.viewEngine + '/views/gallery.' + this.viewEngine, 'templates/views/gallery.' + this.viewEngine);
 		}
-		
+
 		if (this.includeEnquiries) {
-			this.copy('templates/default-jade/views/contact.jade', 'templates/views/contact.jade');
+			this.copy('templates/default-' + this.viewEngine + '/views/contact.' + this.viewEngine, 'templates/views/contact.' + this.viewEngine);
 			if (this.includeEmail) {
-				this.copy('templates/default-jade/emails/enquiry-notification.jade', 'templates/emails/enquiry-notification.jade');
+				this.copy('templates/default-' + this.viewEngine + '/emails/enquiry-notification.' + this.viewEngine, 'templates/emails/enquiry-notification.' + this.viewEngine);
 			}
 		}
 	}
