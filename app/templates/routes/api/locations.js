@@ -30,8 +30,6 @@ exports.get = function(req, res) {
 	
 	Location.model.findById(req.params.id).populate('tours').populate('architecturalStyle').exec(function(err, item) {
 		
-		console.log(item);
-		
 		if (err) return res.apiError('database error', err);
 		if (!item) return res.apiError('not found');
 		
