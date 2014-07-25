@@ -1,6 +1,6 @@
 # Landmark Generator
 
-A [Yeoman](http://yeoman.io) generator for [LandmarkJS](http://landmarkjs.com), the model-driven cms for node.js built on Express and MongoDB.
+A [Yeoman](http://yeoman.io) generator for [LandmarkJS](http://getlandmarkproject.com), the model-driven cms for node.js built on Express and MongoDB.
 
 `yo landmark` will scaffold a new LandmarkJS project for you, and offer to set up blog, gallery, and enquiry (contact form) models + views.
 
@@ -33,7 +33,7 @@ The generator will ask you a few questions about which features to include, then
 
 ### What next?
 
-When you've got your new project, check out the [LandmarkJS Documentation](http://landmarkjs.com/docs) to learn more about how to get started with LandmarkJS.
+When you've got your new project, check out the [LandmarkJS Documentation](http://getlandmarkproject.com/docs/cms) to learn more about how to get started with LandmarkJS.
 
 ## Problems?
 

@@ -27,7 +27,7 @@ var LandmarkGenerator = module.exports = function LandmarkGenerator(args, option
 			'\n' +
 			'\nYour LandmarkJS project is ready to go!' +
 			'\n' +
-			'\nFor help getting started, visit http://landmarkjs.com/guide' +
+			'\nFor help getting started, visit http://getlandmarkproject.com/guide' +
 
 			((this.usingTestMandrillAPI) ?
 				'\n' +
@@ -112,7 +112,7 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 			}, {
 				name: 'adminLogin',
 				message: 'Enter an email address for the first Admin user:',
-				default: 'user@landmarkjs.com'
+				default: 'user@getlandmarkproject.com'
 			}, {
 				name: 'adminPassword',
 				message: 'Enter a password for the first Admin user:',
@@ -170,7 +170,7 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 					name: 'mandrillAPI',
 					message: '------------------------------------------------' +
 						'\n    Please enter your Mandrill API Key (optional).' +
-						'\n    See http://landmarkjs.com/guide/config/#mandrill for more info.' +
+						'\n    See http://getlandmarkproject.com/guide/config/#mandrill for more info.' +
 						'\n    ' +
 						'\n    You can skip this for now (we\'ll include a test key instead)' +
 						'\n    ' +
@@ -196,7 +196,7 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 			name: 'cloudinaryURL',
 			message: '------------------------------------------------' +
 				'\n    LandmarkJS integrates with Cloudinary for image upload, resizing and' +
-				'\n    hosting. See http://landmarkjs.com/guide/config/#cloudinary for more info.' +
+				'\n    hosting. See http://getlandmarkproject.com/guide/config/#cloudinary for more info.' +
 				'\n    ' +
 				'\n    CloudinaryImage fields are used for all image uploads by default.' +
 				'\n    ' +
@@ -220,7 +220,7 @@ LandmarkGenerator.prototype.prompts = function prompts() {
 			name: 's3Key',
 			message: '------------------------------------------------' +
 				'\n    LandmarkJS integrates with the Amazon S3 for uploading location tours.' +
-				'\n    See http://landmarkjs.com/docs/configuration/#services-amazons3 for more information.' +
+				'\n    See http://getlandmarkproject.com/docs/cms/configuration/#services-amazons3 for more information.' +
 				'\n    ' +
 				'\n    If you skip this, you will recieve an error in starting the app.' +
 				'\n    ' +

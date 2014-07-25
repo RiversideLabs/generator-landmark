@@ -1,4 +1,4 @@
 <%= projectName %>
 =====================
 
-Powered by [LandmarkJS](http://landmarkjs.com).
+Powered by [LandmarkJS](http://getlandmarkproject.com).

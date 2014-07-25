@@ -9,7 +9,7 @@ var landmark = require('landmark-serve')<% if (viewEngine == 'hbs') { %>,
 	<% } %>;
 <% if (includeGuideComments) { %>
 // Initialise Landmark with your project's configuration.
-// See http://landmarkjs.com/guide/config for available options
+// See http://getlandmarkproject.com/guide/config for available options
 // and documentation.
 <% } %>
 landmark.init({
