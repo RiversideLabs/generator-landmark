@@ -336,7 +336,7 @@ LandmarkGenerator.prototype.project = function project() {
 
 LandmarkGenerator.prototype.models = function models() {
 
-	var modelFiles = ['Location', 'Tour'],
+	var modelFiles = ['Location', 'ArchitecturalStyle', 'Tour'],
 		modelIndex = '';
 
 	if (this.includeBlog) {
