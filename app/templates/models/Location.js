@@ -20,7 +20,7 @@ Location.add({
 	heroImage: { type: Types.CloudinaryImage },
 	heroThumb: {type: Types.Url, hidden: true},
 	heroDetail: {type: Types.Url, hidden: true},
-	location: { type: Types.Location },
+	location: { type: Types.Location, initial: false, required: true },
 	description: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }
