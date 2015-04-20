@@ -94,6 +94,34 @@ brew mongo
 For other platforms, see the [MongoDB installation guides](http://docs.mongodb.org/manual/installation/).
 
 
+## Notice
+
+The activity which is the subject of this mobile device application
+and shareware has been financed in part with Federal funds from the
+National Park Service, Department of the Interior, through the
+California Office of Historic Preservation. However, the contents
+and opinions do not necessarily reflect the views or policies of the
+Department of the Interior or the California Office of Historic
+Preservation, nor does mention of trade names or commercial products
+constitute endorsement or recommendation by the Department of the
+Interior or the California Office of Historic Preservation.
+ 
+This program receives Federal financial assistance for identification
+and protection of historic properties. Under Title VI of the Civil
+Rights Act of 1964, Section 504 of the Rehabilitation Act of 1973,
+and the Age Discrimination Act of 1975, as amended, the U.S.
+Department of the Interior prohibits discrimination on the basis of
+race, color, national origin, disability, or age in its federally
+assisted programs. If you believe you have been discriminated against
+in any program, activity, or facility as described above, or if you
+desire further information, please write to:
+
+Office of Equal Opportunity
+National Park Service
+1849 C Street, N.W.
+Washington, D.C. 20240
+
+
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
