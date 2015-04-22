@@ -94,7 +94,7 @@ brew mongo
 For other platforms, see the [MongoDB installation guides](http://docs.mongodb.org/manual/installation/).
 
 
-## Notice
+## Credits
 
 The activity which is the subject of this mobile device application
 and shareware has been financed in part with Federal funds from the
